@@ -3,19 +3,23 @@ import { app } from './app'
 const PORT = 3000
 const start = async() => {
 
+    if(!process.env.MONGO_URI) {
+        throw new Error("MONGO_URI should be defined")
+    }
+
     try {
-        await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
+        await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex : true
         })
-        console.log("Connected to mongoose")
+        console.log("Tickets connected to mongoose")
     } catch(err) {
         console.log("Mongo error",err)
     }
     
 }
 
-app.listen(PORT, () => { console.log(`Auth Service listening on ${PORT} `) })
+app.listen(PORT, () => { console.log(`Tickets Service listening on ${PORT} `) })
 
 start()
