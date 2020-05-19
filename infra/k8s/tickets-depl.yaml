@@ -15,6 +15,9 @@ spec:
       containers:
         - name: tickets
           image: harzz97/tickets
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://tickets-mongo-srv:27017/tickets'
 ---
 apiVersion: v1
 kind: Service

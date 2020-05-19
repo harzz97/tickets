@@ -15,6 +15,9 @@ spec:
       containers:
         - name: auth
           image: harzz97/auth
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
 ---
 apiVersion: v1
 kind: Service
