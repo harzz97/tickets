@@ -1,6 +1,6 @@
 {
   "name": "@averagecoders/common",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Common library for different micro services",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "del": "del ./build/*",
-    "build": "npm run clean && tsc",
+    "build": "npm run del && tsc",
     "pub": "git add . && git commit -m \"Updates to common library\" && npm version patch && npm run build && npm publish --access public"
   },
   "keywords": [],
