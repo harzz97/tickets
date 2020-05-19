@@ -2,8 +2,8 @@ import Link from 'next/link'
 const Header = ({ currentUser }) => {
 
     const headerLinks = [
-        !currentUser && { label: "Signin", url: "/auth/signin" },
-        !currentUser && { label: "Signup", url: "/auth/signup" },
+        !currentUser && { label: "Login", url: "/auth/signin" },
+        !currentUser && { label: "Register", url: "/auth/signup" },
         currentUser && { label: "Signout", url: "/auth/signout" }
     ].filter(linkConfig => linkConfig)
         .map(({ label, url }) => {
@@ -14,7 +14,7 @@ const Header = ({ currentUser }) => {
             </li>)
         })
 
-    return (<nav className="navbar navbar-dark" style={{backgroundColor:"#8e44ad"}}>
+    return (<nav className="navbar navbar-dark" style={{backgroundColor:"#8e44ad",margin:0,padding:0}}>
         <Link href="/">
             <a className="navbar-brand"><img src="/images/jtlogo.svg" alt="logo" width="100px" height="35px"/></a>
         </Link>
