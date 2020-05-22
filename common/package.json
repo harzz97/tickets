@@ -1,6 +1,6 @@
 {
   "name": "@averagecoders/common",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Common library for different micro services",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -26,6 +26,7 @@
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "express-validator": "^6.5.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "node-nats-streaming": "^0.3.2"
   }
 }
