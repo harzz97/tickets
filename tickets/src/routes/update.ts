@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import { body } from 'express-validator'
-import { requireAuth, NotFoundError, NotAuthorized, validateRequest } from '@averagecoders/common'
+import { requireAuth, NotFoundError, NotAuthorized, validateRequest, BadRequestError } from '@averagecoders/common'
 import { Ticket } from '../models/tickets'
 import { TicketUpdatedPublisher } from '../events/publishers/tickets-updated-publisher'
 import { natsWrapper } from '../nats-wrapper'
@@ -21,6 +21,12 @@ router.put('/api/tickets/:id',
 
         if (!ticket) {
             throw new NotFoundError()
+        }
+
+        // If the ticket is already reserved then don't let the user edit it
+
+        if(ticket.orderId){
+            throw new BadRequestError('Cannot edit a reserved ticket')
         }
 
         if (ticket.userId !== req.currentUser.id) {
