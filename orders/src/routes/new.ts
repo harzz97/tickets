@@ -4,7 +4,7 @@ import { requireAuth, validateRequest, NotFoundError, OrderStatus, BadRequestErr
 import mongoose from 'mongoose'
 import { Ticket } from '../models/ticket'
 import { Order } from '../models/orders'
-import { OrderCreatedPublisher } from '../events/order-created-publisher'
+import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher'
 import { natsWrapper } from '../nats-wrapper'
 
 const router = express.Router()
@@ -50,6 +50,7 @@ router.post("/api/orders", requireAuth,
             status: order.status,
             userId: order.userId,
             expiresAt: order.expiresAt.toISOString(),
+            version: order.version,
             ticket: {
                 id: ticket.id,
                 price: ticket.price
