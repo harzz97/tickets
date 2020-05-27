@@ -32,6 +32,14 @@ build:
               manual:
                 - src: 'src/**/*.ts'
                   dest: .
+        - image: harzz97/expiration
+          context: expiration
+          docker: 
+              dockerfile: Dockerfile 
+          sync:
+              manual:
+                - src: 'src/**/*.ts'
+                  dest: .
         - image: harzz97/ticketing-client
           context: client
           docker: 
