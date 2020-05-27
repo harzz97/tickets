@@ -4,6 +4,7 @@ export interface TicketUpdatedEvent {
     subject: Subjects.TicketUpdated
     data: {
         id: string,
+        orderId?: string,
         title: string,
         price: number,
         userId: string,
