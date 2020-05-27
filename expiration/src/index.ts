@@ -1,4 +1,5 @@
 import { natsWrapper } from './nats-wrapper'
+import { OrderCreatedListener } from './events/listeners/order-created-listener'
 const start = async () => {
     console.log("Expiration service started")
     if (!process.env.NATS_CLIENT_ID) {
@@ -25,6 +26,8 @@ const start = async () => {
         process.on('SIGINT', () => natsWrapper.client.close())
         process.on('SIGTERM', () => natsWrapper.client.close())
 
+        // add the ordercreated listener
+        new OrderCreatedListener(natsWrapper.client).listen()
     } catch (err) {
         console.log("Mongo error", err)
     }
