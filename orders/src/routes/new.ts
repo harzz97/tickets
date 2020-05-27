@@ -31,9 +31,9 @@ router.post("/api/orders", requireAuth,
             throw new BadRequestError('Ticket reserved already')
         }
 
-        // Calculate the expiryAt time for 15min
+        // Calculate the expiryAt time for 15 seconds
         const expiresAt = new Date()
-        expiresAt.setSeconds(expiresAt.getSeconds() + 15)
+        expiresAt.setSeconds(expiresAt.getSeconds() + 60)
 
         // Build the order and save it to database
         const order = Order.build({
