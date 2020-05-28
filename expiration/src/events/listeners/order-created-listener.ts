@@ -13,7 +13,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent>{
             orderId: data.id
         }, {
             delay: delayTime
-        })
+        }).catch(err => console.log("Error at addQueue ",err))
 
         // send ack msg
         msg.ack()
