@@ -5,11 +5,12 @@ import Header from '../components/header'
 const AppComponent = ({ Component, pageProps, currentUser }) => {
 
     return (
-        <div className="container-fluid">
+        <div>
             <Header currentUser={currentUser} />
-            <Component {...pageProps} />
+            <div className="container">
+                <Component currentUser={currentUser} {...pageProps} />
+            </div>
         </div>
-
     )
 
 }
@@ -18,11 +19,11 @@ AppComponent.getInitialProps = async (appContext) => {
 
     const client = buildClient(appContext.ctx);
     const { data } = await client.get("/api/users/currentuser")
-    console.log("data:",data)
+    console.log("data:", data)
 
     let pageProps = {}
     if (appContext.Component.getInitialProps) {
-        pageProps = await appContext.Component.getInitialProps(appContext.ctx)
+        pageProps = await appContext.Component.getInitialProps(appContext.ctx, client, data.currentUser)
     }
 
     return {
