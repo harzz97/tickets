@@ -1,6 +1,8 @@
 name: auth-test
 on:
-  push
+  push:
+    paths:
+      - 'auth/**'
 
 jobs:
   build:

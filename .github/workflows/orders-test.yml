@@ -1,6 +1,8 @@
 name: orders-test
 on:
-  push
+  push:
+    paths:
+      - 'orders/**'
 
 jobs:
   build:
