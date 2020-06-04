@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, CardActions, Button } from "@material-ui/core"
+import { Card, CardContent, Typography, CardActions, Button, Paper } from "@material-ui/core"
 import useRequest from "../../hooks/use-request"
 import Router from 'next/router'
 
@@ -13,19 +13,33 @@ const TicketShow = ({ ticket }) => {
     })
     return (
         <div>
-            <Card style={{ marginTop: "20px", width: "50%" }}>
-                <CardContent>
-                    <Typography variant="h5" component="h2">
+            <div style={{ background: '#1a1b1c', "-webkit-filter": "blur(8px)", color: 'white', height: '250px' }}>
+            </div>
+            {/* <img src="/images/avengers.jpg" width='200px' height='270px' style={{ marginLeft: '15px', position: 'absolute', left: 0, top: '25%' }} /> */}
+            <Paper elevation={3} style={{ marginTop: '25px', minHeight: '150px', }}>
+                <div style={{ padding: '15px' }}>
+                    <Typography variant='h4' component='h5'>
                         {ticket.title}
                     </Typography>
-                    <Typography variant="body2" component="p">
-                        Price: {ticket.price}
+                    <Typography variant='body1' component='p' color='textSecondary'>
+                        Drama | English
                     </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button onClick={() => doRequest()} size="medium" color="primary">Purchase</Button>
-                </CardActions>
-            </Card>
+                    {new Date().toDateString()} Onwards
+                    <br />
+                    Coimbatore | ₹ {ticket.price}
+                </div>
+                <div style={{ padding: '15px' }}>
+                    <Typography variant='subtitle1' component='p'>
+                        Synopsis
+                     </Typography>
+                    <Typography>
+                        The grave course of events set in motion by Thanos that wiped out half the universe and fractured the Avengers ranks compels the remaining Avengers to take one final stand in Marvel Studios` grand conclusion to twenty-two films, "Avengers: Endgame."
+                     </Typography>
+                </div>
+                <br />
+                <Button variant='contained' onClick={() => doRequest()} color="primary" style={{ margin: '15px' }}>Purchase</Button>
+            </Paper>
+
             <br />
             {errors}
 
